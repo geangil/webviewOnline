@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Link Example</title>
+    <title>Chat Test</title>
+    <script>
+        function requestLocation() {
+            // Envia uma mensagem para o código Swift para solicitar a localização do usuário
+            window.webkit.messageHandlers.chatRequestUserLocation.postMessage(null);
+        }
+
+        function handleUserLocation(lat, lon) {
+            // Recebe a localização do código Swift e a exibe
+            document.getElementById('location').textContent = 'Latitude: ' + lat + ', Longitude: ' + lon;
+        }
+
+        // Simula a chamada da função para testar
+        function simulateLocationResponse() {
+            // Envia uma mensagem simulada com dados de localização para o código Swift
+            window.webkit.messageHandlers.chatSendUserLocation.postMessage({ lat: '37.7749', lon: '-122.4194' });
+        }
+    </script>
 </head>
 <body>
-    <h1>Deep Link Example</h1>
-    <p>Click the link below to test the deep link:</p>
-    <a href="br.com.grupofleury.amais://unidades">Open Unidades</a><br/><br/>
-    <a href="br.com.grupofleury.amais://agendamentos">Open Agendamentos</a><br/><br/>
-    <a href="br.com.grupofleury.amais://resultados">Open Resultados</a><br/><br/>
-    <a href="br.com.grupofleury.amais://ouvidoria">Open Ouvidoria</a><br/><br/>
-    <a href="br.com.grupofleury.amais://ad">Open AD</a><br/><br/>
+    <h1>Chat Location Test</h1>
+    <button onclick="requestLocation()">Request Location</button>
+    <button onclick="simulateLocationResponse()">Simulate Location Response</button>
+    <p id="location"></p>
 </body>
 </html>
