@@ -6,26 +6,31 @@
     <title>Chat Test</title>
     <script>
         function requestLocation() {
-            // Envia uma mensagem para o código Swift para solicitar a localização do usuário
+            logToSite('Solicitando localização após 5 segundos...');
             window.webkit.messageHandlers.chatRequestUserLocation.postMessage(null);
         }
 
-        function handleUserLocation(lat, lon) {
-            // Recebe a localização do código Swift e a exibe
-            document.getElementById('location').textContent = 'Latitude: ' + lat + ', Longitude: ' + lon;
+        function chatSendUserLocation(lat, lon) {
+            const locationText = 'Latitude: ' + lat + ', Longitude: ' + lon;
+            document.getElementById('location').textContent = locationText;
+            logToSite('Recebido do Swift: ' + locationText);
         }
 
-        // Simula a chamada da função para testar
-        function simulateLocationResponse() {
-            // Envia uma mensagem simulada com dados de localização para o código Swift
-            window.webkit.messageHandlers.chatSendUserLocation.postMessage({ lat: '37.7749', lon: '-122.4194' });
+        function logToSite(message) {
+            const logElement = document.getElementById('log');
+            const newLog = document.createElement('p');
+            newLog.textContent = message;
+            logElement.appendChild(newLog);
+        }
+
+        window.onload = function() {
+            setTimeout(requestLocation, 5000); // Solicita a localização após 5 segundos
         }
     </script>
 </head>
 <body>
     <h1>Chat Location Test</h1>
-    <button onclick="requestLocation()">Request Location</button>
-    <button onclick="simulateLocationResponse()">Simulate Location Response</button>
     <p id="location"></p>
+    <div id="log"></div>
 </body>
 </html>
