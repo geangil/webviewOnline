@@ -17,10 +17,12 @@
         }
 
         function logToSite(message) {
-            const logElement = document.getElementById('log');
-            const newLog = document.createElement('p');
-            newLog.textContent = message;
-            logElement.appendChild(newLog);
+            setTimeout(() => {
+                const logElement = document.getElementById('log');
+                const newLog = document.createElement('p');
+                newLog.textContent = message;
+                logElement.appendChild(newLog);
+            }, 1500);
         }
 
         window.onload = function() {
