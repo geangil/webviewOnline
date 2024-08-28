@@ -6,7 +6,6 @@
     <title>Chat Test</title>
     <script>
         function requestLocation() {
-            logToSite('Solicitando localização após 5 segundos...');
             window.webkit.messageHandlers.chatRequestUserLocation.postMessage(null);
         }
 
@@ -24,6 +23,7 @@
         }
 
         window.onload = function() {
+            logToSite('Solicitando localização após 5 segundos...');
             setTimeout(requestLocation, 5000); // Solicita a localização após 5 segundos
         }
     </script>
