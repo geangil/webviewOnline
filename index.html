@@ -11,7 +11,6 @@
 
         function chatSendUserLocation(lat, lon) {
             const locationText = 'Latitude: ' + lat + ', Longitude: ' + lon;
-            document.getElementById('location').textContent = locationText;
             logToSite('Recebido do Swift: ' + locationText);
         }
 
@@ -30,7 +29,6 @@
 </head>
 <body>
     <h1>Chat Location Test</h1>
-    <p id="location"></p>
     <div id="log"></div>
 </body>
 </html>
